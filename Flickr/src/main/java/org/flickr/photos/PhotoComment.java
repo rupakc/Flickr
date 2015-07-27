@@ -14,7 +14,7 @@ import org.json.simple.parser.ParseException;
  * 
  * @author Rupak Chakraborty
  * TODO - Add Multithreading and Integrate with MongoDB 
- * 
+ * TODO - Status check
  */
 
 public class PhotoComment {
