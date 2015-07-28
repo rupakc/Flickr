@@ -162,10 +162,10 @@ public class PhotoSearch {
 	}
 
 	/** 
-	 * 
-	 * @param response
-	 * @param field_name
-	 * @return
+	 * Returns a JSONArray from the object containing a given field name
+	 * @param response JSONObject containing the response
+	 * @param field_name String containing the field name
+	 * @return JSONArray containing the particular items
 	 */ 
 
 	public JSONArray getJSONArray(JSONObject response,String field_name) { 
@@ -177,8 +177,8 @@ public class PhotoSearch {
 	} 
 
 	/** 
-	 * 
-	 * @param photo
+	 * Prints the photo object to the screen
+	 * @param photo JSONObject containing the photo object
 	 */ 
 
 	public void printPhotoObject(JSONObject photo) { 
@@ -197,9 +197,9 @@ public class PhotoSearch {
 	} 
 
 	/** 
-	 * 
-	 * @param response_object
-	 * @return
+	 * Checks the status of the JSON response returned
+	 * @param response_object JSONObject which is to be checked
+	 * @return true if status is OK else false
 	 */ 
 
 	public boolean checkStatus(JSONObject response_object) { 
@@ -216,8 +216,8 @@ public class PhotoSearch {
 	}
 
 	/** 
-	 * 
-	 * @param tag
+	 * Pipeline for fetching just the first page of the result
+	 * @param tag String containing the tag name
 	 */ 
 
 	public void tagFetchPipelineSansPagination(String tag) { 
@@ -248,7 +248,14 @@ public class PhotoSearch {
 			p.printStackTrace();
 		}
 	} 
-
+	
+	/** 
+	 * Pipeline for fetching photos corresponding to a tag
+	 * @param tag String containing the tag name
+	 * @param number_of_pages The number of pages to search for
+	 * @param results_per_page The number of results to be displayed per page
+	 */ 
+	
 	public void tagFetchPipelinePagination(String tag,int number_of_pages,int results_per_page) { 
 		
 		JSONObject json_object = null;
@@ -310,6 +317,6 @@ public class PhotoSearch {
 		JSONObject photos = (JSONObject) response.get("photos");
 		JSONArray array_photo = (JSONArray) photos.get("photo");
 		photo.printPhotoObject((JSONObject) array_photo.get(10));
-		photo.tagFetchPipelinePagination("fashion", 5, 10);
+		photo.tagFetchPipelinePagination("rag&bone", 5, 10);
 	}
 }
