@@ -12,9 +12,8 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 /** 
- * 
  * @author Rupak Chakraborty
- *
+ * TODO - Add Findplaces object and multithreading
  */  
 
 public class PlacesFind {
