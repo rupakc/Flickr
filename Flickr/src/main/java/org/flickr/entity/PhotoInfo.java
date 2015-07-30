@@ -33,7 +33,8 @@ public class PhotoInfo {
 	private DateInfo dateInfo;
 	private VisibilityInfo visibilityInfo;
 	private UsageInfo usageInfo;
-	private PublicEditInfo publicInfo;
+	private PublicEditInfo publicInfo; 
+	
 	/**
 	 * @return the id
 	 */
