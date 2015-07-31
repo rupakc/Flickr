@@ -11,7 +11,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 /** 
- * 
+ * TODO-Add multithreading support
  * @author Rupak Chakraborty
  *
  */ 
@@ -149,11 +149,93 @@ public class PhotoInfoGet {
 		System.out.println("Is favorite : " + photo.get("isfavorite"));
 		System.out.println("License : " + photo.get("license"));
 		System.out.println("Views : " + photo.get("Views"));
-		System.out.println("Owner : " + photo.get("owner"));
-		System.out.println("Dates : " + photo.get("dates"));
-		System.out.println("Visibility : " + photo.get("visibility"));
-		System.out.println("Usage : " + photo.get("usage"));
+		printOwnerInfo((JSONObject) photo.get("owner"));
+		printDateInfo((JSONObject) photo.get("dates"));
+		printVisibilityInfo((JSONObject) photo.get("visibility"));
+		printUsageInfo((JSONObject) photo.get("usage"));
+		JSONObject object = (JSONObject) photo.get("tags");
+		JSONArray tag = (JSONArray) object.get("tag");
+		printTagInfo((JSONObject) tag.get(0));
 		System.out.println("------------------------------------------------\n");
+	}
+	
+	/** 
+	 * Prints a date info object to the console
+	 * @param dates JSONObject containing the date info
+	 */ 
+	
+	public void printDateInfo(JSONObject dates) { 
+		
+		System.out.println("----------------------------------------------------\n");
+		System.out.println("Posted : " + dates.get("dates"));
+		System.out.println("Taken : " + dates.get("taken"));
+		System.out.println("Taken Granularity : " + dates.get("takengranularity"));
+		System.out.println("Taken Unknown : " + dates.get("takenunknown"));
+		System.out.println("Last Update : " + dates.get("lastupdate"));
+		System.out.println("--------------------------------------------------------\n");
+	}
+	
+	/** 
+	 * Prints the Usage Info object to console
+	 * @param usage JSONObject containing the user info
+	 */ 
+	
+	public void printUsageInfo(JSONObject usage) { 
+		
+		System.out.println("--------------------------------------------------------\n");
+		System.out.println("Can Share : " + usage.get("canshare"));
+		System.out.println("Can Download : " + usage.get("candownload"));
+		System.out.println("Can Blog : " + usage.get("canblog"));
+		System.out.println("Can Print : " + usage.get("canprint"));
+		System.out.println("---------------------------------------------------------\n");
+	}
+	
+	/** 
+	 * Prints the visibility Info object to console 
+	 * @param visi JSONObject containing the visibility info
+	 */ 
+	
+	public void printVisibilityInfo(JSONObject visi) { 
+		
+		System.out.println("-----------------------------------------------------------\n");
+		System.out.println("Is Public : " + visi.get("ispublic"));
+		System.out.println("Is Friend : " + visi.get("isfriend"));
+		System.out.println("Is Family : " + visi.get("isfamily"));
+		System.out.println("--------------------------------------------------------------\n");
+	}
+	
+	/** 
+	 * Prints the Owner Info object to console 
+	 * @param owner JSONObject containing the owner info
+	 */ 
+	
+	public void printOwnerInfo(JSONObject owner) { 
+		
+		System.out.println("---------------------------------------------------------------\n");
+		System.out.println("NsId : " + owner.get("nsid"));
+		System.out.println("Username : " + owner.get("username"));
+		System.out.println("Realname : " + owner.get("realname"));
+		System.out.println("Location : " + owner.get("location"));
+		System.out.println("IconServer : " + owner.get("iconserver"));
+		System.out.println("Path Alias : " + owner.get("path_alias"));
+		System.out.println("IconFarm : " + owner.get("iconfarm"));
+		System.out.println("------------------------------------------------------------------\n");
+	}
+	
+	/**
+	 * Prints the tag info object to console
+	 * @param tag JSONObject containing the tag info
+	 */ 
+	
+	public void printTagInfo(JSONObject tag) { 
+		
+		System.out.println("----------------------------------------------------------------\n");
+		System.out.println("Id : " + tag.get("id"));
+		System.out.println("Author : " + tag.get("author"));
+		System.out.println("Author Name : " + tag.get("authorname"));
+		System.out.println("Raw : " + tag.get("raw"));
+		System.out.println("Content : " + tag.get("_content"));
+		System.out.println("Machine Tag : " + tag.get("machine_tag"));
 	}
 	
 	/** 
