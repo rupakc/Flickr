@@ -18,7 +18,6 @@ import org.json.simple.parser.ParseException;
  */ 
 
 public class CameraBrandModel {
-	//https://api.flickr.com/services/rest/?method=flickr.cameras.getBrandModels&api_key=9625bb206d0ec7da5451697fc8937706&brand=canon&format=json&nojsoncallback=1
 
 	String BASE_URL = "https://api.flickr.com/services/rest/?method=flickr.cameras.getBrandModels&api_key=";
 	String API_KEY = "9625bb206d0ec7da5451697fc8937706";
@@ -108,7 +107,12 @@ public class CameraBrandModel {
 
 		return status;
 	}
-
+	
+	/** 
+	 * Given a camera brand retrieves information about associated models
+	 * @param brand String containing the brand name
+	 */ 
+	
 	public void modelPipeline(String brand) { 
 
 		this.BRAND_NAME = brand;
@@ -123,8 +127,24 @@ public class CameraBrandModel {
 			System.out.println("Brand : " + cameras.get("brand"));
 
 			for (int i = 0; i < camera.size(); i++) {  
-
-				System.out.println(camera.get(i));
+				
+				System.out.println("--------------------------------------------------------------------\n");
+				temp = (JSONObject) camera.get(i);
+				JSONObject name = (JSONObject) temp.get("name");
+				System.out.println("Name : " + name.get("_content"));
+				JSONObject details = (JSONObject) temp.get("details");
+				JSONObject megapixels = (JSONObject) details.get("megapixels");
+				JSONObject lcd_screen_size = (JSONObject) details.get("lcd_screen_size");
+				JSONObject memory_type = (JSONObject) details.get("memory_type");
+				System.out.println("Megaixels : " + megapixels.get("_content"));
+				System.out.println("Lcd Screen Size : " + lcd_screen_size.get("_content"));
+				System.out.println("Memory Type : " + memory_type.get("_content"));
+				JSONObject images = (JSONObject) temp.get("images");
+				JSONObject small = (JSONObject) images.get("small");
+				JSONObject large = (JSONObject) images.get("large");
+				System.out.println("Small URL : " + small.get("_content"));
+				System.out.println("Large URL : " + large.get("_content"));
+				System.out.println("---------------------------------------------------------------------\n");
 			}
 
 		} catch(Exception e) {  
@@ -133,6 +153,10 @@ public class CameraBrandModel {
 		}
 	}
 	
+	/** 
+	 * Main function to test the functioning of the class
+	 * @param args
+	 */
 	public static void main(String args[]) { 
 		
 		CameraBrandModel model = new CameraBrandModel();
